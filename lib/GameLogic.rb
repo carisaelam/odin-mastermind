@@ -30,18 +30,45 @@ module GameLogic
 
   # Compare two arrays for content and index
   def compare_arrays(array1, array2)
+    comparison = []
     array1.each_with_index do |num, index|
       if array2.include?(num)
         if array2[index] == num
-          puts "#{num} is correct and in correct index"
+          comparison.push('B')
         else
-          puts "#{num} exists in both arrays"
+          comparison.push('W')
         end
       else
-        puts "#{num} not found in array2"
+        comparison.push('_')
       end
     end
+    p comparison.zip(array1)
   end
+
+  # Display a "board" ['1', '2', '3', '4'] + ['B', 'B', '_', '_']
+  def display_board(array1, array2)
+    puts array1.join('-')
+    puts array2.join('-')
+  end
+
+  # Generate breaker guesses [Maker Mode]
+  def generate_breaker_guesses(zipped_array)
+    # take in zipped array with previous guesses and hints
+    new_guess = []
+    correct_numbers = []
+    # if number is B or W, push to correct_numbers and ensure it is in the next guess somewhere
+    zipped_array.each do |array|
+      if array[0] == 'B' || array[0] == 'W'
+        new_guess.push(array[1])
+        correct_numbers.push(array[1])
+      else
+        new_guess.push(RANGE.sample)
+      end
+    end
+    # shuffle array that contains all correct_numbers and random other guesses 
+    p new_guess.shuffle
+  end
+  
 end
 
 ## TESTING
@@ -52,7 +79,9 @@ end
 
 tester = Test.new
 
-# arr1 = [1, 2, 3, 4]
-# arr2 = [1, 3, 1, 1]
+arr1 = [1, 2, 3, 4]
+arr2 = [1, 6, 3, 9]
+zipped_array = [['B', 1], ['_', 2], ['B', 3], ['_', 4]]
 
 # tester.compare_arrays(arr1, arr2)
+tester.generate_breaker_guesses(zipped_array)

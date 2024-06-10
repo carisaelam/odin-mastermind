@@ -1,3 +1,3 @@
-# Mastermind Ruby game for TOP 
+# Mastermind Ruby Game for TOP 
 
 For this project, I tackled the Mastermind game as part of The Odin Project's Ruby curriculum. Mastermind is a classic code-breaking game where one player sets a secret code, and the other player tries to guess it within a certain number of turns. My implementation involves building a command-line version of the game in Ruby. Players can interact with the game by inputting guesses, and the program provides feedback on the correctness of each guess. Through this project, I honed my skills in object-oriented programming, logical thinking, and user input handling in Ruby. Check out the source and try your hand at beating the computer!
