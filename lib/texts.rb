@@ -24,14 +24,20 @@ module Texts
     puts "Select 'B' to BREAK the code"
     puts "Select 'M' to MAKE the code"
     puts ''
-    gets.chomp.upcase
+    choice = gets.chomp.upcase
     puts ''
+    choice
   end
 
   def print_mode_choice(choice)
     puts choice == 'B' ? 'You are the Codebreaker' : 'You are the Codemaker'
     puts ''
     choice
+  end
+
+  ## Breaker Mode Prompts
+  def breaker_guess_prompt
+    puts 'Guess the code! Type four numbers 1–6.'
   end
 end
 

@@ -65,10 +65,9 @@ module GameLogic
         new_guess.push(RANGE.sample)
       end
     end
-    # shuffle array that contains all correct_numbers and random other guesses 
+    # shuffle array that contains all correct_numbers and random other guesses
     p new_guess.shuffle
   end
-  
 end
 
 ## TESTING
@@ -77,11 +76,11 @@ class Test
   include GameLogic
 end
 
-tester = Test.new
+# tester = Test.new
 
-arr1 = [1, 2, 3, 4]
-arr2 = [1, 6, 3, 9]
-zipped_array = [['B', 1], ['_', 2], ['B', 3], ['_', 4]]
+# arr1 = [1, 2, 3, 4]
+# arr2 = [1, 6, 3, 9]
+# zipped_array = [['B', 1], ['_', 2], ['B', 3], ['_', 4]]
 
-# tester.compare_arrays(arr1, arr2)
-tester.generate_breaker_guesses(zipped_array)
+# # tester.compare_arrays(arr1, arr2)
+# tester.generate_breaker_guesses(zipped_array)
