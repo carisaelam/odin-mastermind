@@ -62,21 +62,23 @@ module GameLogic
   end
 
   # Generate breaker guesses [Maker Mode]
-  def generate_breaker_guesses(zipped_array)
-    # take in zipped array with previous guesses and hints
-    new_guess = []
-    correct_numbers = []
-    # if number is B or W, push to correct_numbers and ensure it is in the next guess somewhere
-    zipped_array.each do |array|
-      if array[0] == 'B' || array[0] == 'W'
-        new_guess.push(array[1])
-        correct_numbers.push(array[1])
-      else
-        new_guess.push(RANGE.sample)
+  def generate_breaker_guesses(zipped_array, correct_numbers)
+    new_guess = Array.new(4)
+    puts "zipped array is #{zipped_array}"
+    zipped_array.each_with_index do |(feedback, num), i|
+      if feedback == 'B'
+        new_guess[i] = num
+      elsif feedback == 'W' && !correct_numbers.include?(num)
+        new_guess.push(num)
+      elsif feedback == '_'
+        correct_numbers.delete(num)
+        puts "deleting #{num} from the correct numbers array"
       end
+      puts "new_guess build: #{new_guess}"
+      puts "correct numbers array: #{correct_numbers}"
     end
-    # shuffle array that contains all correct_numbers and random other guesses
-    p new_guess.shuffle
+
+    new_guess.map! { |num| num.nil? ? correct_numbers.sample : num }
   end
 
   def user_generates_code
@@ -98,7 +100,8 @@ class Test
   include GameLogic
 end
 
-# tester = Test.new
+tester = Test.new
+p tester.generate_secret_code
 
 # arr1 = [1, 2, 3, 4]
 # arr2 = [1, 6, 3, 9]
