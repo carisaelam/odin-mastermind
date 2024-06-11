@@ -16,8 +16,8 @@ class GamePlay
   # [x] Generate and store secret code
   # [x] User guesses four numbers
   # [x] Compare to secret code
-  # [ ] Output the hint
-  # [ ] Loop through until the user either guesses the code correctly or has hit 12 guesses
+  # [x] Output the hint
+  # [x] Loop through until the user either guesses the code correctly or has hit 12 guesses
   # [ ] Restart game?
 
   def breaker_mode
@@ -36,6 +36,7 @@ class GamePlay
       break if hint == 'BBBB' || guess_count == 13
     end
     game_over(guess_count, secret_code)
+    restart_prompt
   end
 
   def maker_mode

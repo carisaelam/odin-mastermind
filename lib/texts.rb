@@ -1,5 +1,6 @@
 module Texts
   def welcome
+    puts ' '
     puts 'Welcome to Mastermind'
     puts 'Would you like to read the directions? (Y/N)'
     choice = gets.chomp.upcase
@@ -45,6 +46,12 @@ module Texts
   def game_over(count, code)
     p count == 13 ? "Game Over. You did not guess it in time. The code was #{code}" : "You broke the code! It was #{code.join}"
     puts ' '
+  end
+
+  def restart_prompt
+    puts 'Play again? (Y/N)'
+    choice = gets.chomp.upcase
+    choice == 'Y' ? start : (puts 'Thanks for playing Mastermind!')
   end
 end
 
