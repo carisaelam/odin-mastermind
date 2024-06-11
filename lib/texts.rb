@@ -44,7 +44,7 @@ module Texts
   end
 
   def game_over(count, code)
-    p count == 13 ? "Game Over. You did not guess it in time. The code was #{code}" : "You broke the code! It was #{code.join}"
+    p count == 13 ? "Codemaker wins! The code was #{code}" : "Codebreaker wins! Secret code was #{code.join}"
     puts ' '
   end
 

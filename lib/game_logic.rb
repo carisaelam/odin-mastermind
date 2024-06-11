@@ -48,7 +48,7 @@ module GameLogic
   # Display a "board" ['1', '2', '3', '4'] + ['B', 'B', '_', '_']
   def display_board(array1, array2)
     puts "Your guess: #{array1.join}"
-    puts "Your hint: #{array2}"
+    puts "Your hint: #{array2.chars.take(4)}"
     puts ''
   end
 
@@ -64,7 +64,6 @@ module GameLogic
   # Generate breaker guesses [Maker Mode]
   def generate_breaker_guesses(zipped_array, correct_numbers)
     new_guess = Array.new(4)
-    puts "zipped array is #{zipped_array}"
     zipped_array.each_with_index do |(feedback, num), i|
       if feedback == 'B'
         new_guess[i] = num
@@ -72,10 +71,7 @@ module GameLogic
         new_guess.push(num)
       elsif feedback == '_'
         correct_numbers.delete(num)
-        puts "deleting #{num} from the correct numbers array"
       end
-      puts "new_guess build: #{new_guess}"
-      puts "correct numbers array: #{correct_numbers}"
     end
 
     new_guess.map! { |num| num.nil? ? correct_numbers.sample : num }
