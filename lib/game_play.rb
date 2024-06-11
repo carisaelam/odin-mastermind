@@ -12,14 +12,6 @@ class GamePlay
     print_mode_choice(choice) == 'B' ? breaker_mode : maker_mode
   end
 
-  # Codebreaker Mode
-  # [x] Generate and store secret code
-  # [x] User guesses four numbers
-  # [x] Compare to secret code
-  # [x] Output the hint
-  # [x] Loop through until the user either guesses the code correctly or has hit 12 guesses
-  # [ ] Restart game?
-
   def breaker_mode
     secret_code = generate_secret_code
     guess_count = 1
@@ -39,8 +31,16 @@ class GamePlay
     restart_prompt
   end
 
+  # Codemaker Mode
+  # [x] User generates code
+  # [ ] Computer generates first guess
+  # [ ] Compare to secret code
+  # [ ] Loop through until the computer either guesses the code correctly or has hit 12 guesses
+  # [ ] Restart game
+
   def maker_mode
-    puts 'you are in maker mode'
+    secret_code = user_generates_code
+    p "Your secret code is: #{secret_code}"
   end
 end
 

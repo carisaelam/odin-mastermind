@@ -78,6 +78,18 @@ module GameLogic
     # shuffle array that contains all correct_numbers and random other guesses
     p new_guess.shuffle
   end
+
+  def user_generates_code
+    puts 'Select the code.'
+    puts 'Enter four digits from 1–6.'
+    code = gets.chomp.chars.map(&:to_i)
+    puts ' '
+    until code.size == 4 && code.all? { |num| (1..6).cover?(num) }
+      puts 'Code must be four digits between 1–6'
+      code = user_generates_code
+    end
+    code
+  end
 end
 
 ## TESTING
