@@ -42,13 +42,23 @@ module GameLogic
         comparison.push('_')
       end
     end
-    p comparison.zip(array1)
+    comparison.zip(array1)
   end
 
   # Display a "board" ['1', '2', '3', '4'] + ['B', 'B', '_', '_']
   def display_board(array1, array2)
-    puts array1.join('-')
-    puts array2.join('-')
+    puts "Your guess: #{array1.join}"
+    puts "Your hint: #{array2}"
+    puts ''
+  end
+
+  def extract_from_array(array)
+    extracted = []
+    array.each do |arr|
+      extracted.push(arr[0])
+    end
+    puts ' '
+    extracted.join
   end
 
   # Generate breaker guesses [Maker Mode]
@@ -80,7 +90,6 @@ end
 
 # arr1 = [1, 2, 3, 4]
 # arr2 = [1, 6, 3, 9]
-# zipped_array = [['B', 1], ['_', 2], ['B', 3], ['_', 4]]
+# # zipped_array = [['B', 1], ['_', 2], ['B', 3], ['_', 4]]
 
-# # tester.compare_arrays(arr1, arr2)
-# tester.generate_breaker_guesses(zipped_array)
+# tester.compare_arrays(arr1, arr2)

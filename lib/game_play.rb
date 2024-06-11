@@ -15,28 +15,27 @@ class GamePlay
   # Codebreaker Mode
   # [x] Generate and store secret code
   # [x] User guesses four numbers
-  # [ ] Compare to secret code
+  # [x] Compare to secret code
+  # [ ] Output the hint
   # [ ] Loop through until the user either guesses the code correctly or has hit 12 guesses
   # [ ] Restart game?
 
   def breaker_mode
-    puts 'you are in breaker mode'
     secret_code = generate_secret_code
-    guess_count = 0
+    guess_count = 1
 
     # game loop
     loop do
-      breaker_guess_prompt
+      breaker_guess_prompt(guess_count)
       guess = gets.chomp.split('').map(&:to_i)
       guess_count += 1
-      p "you guessed #{guess.join}"
-      p "secret_code is #{secret_code}"
-      p "Turn #{guess_count}"
-      p "comparing #{guess} to #{secret_code}"
-      compare_arrays(guess, secret_code)
+      compared_array = compare_arrays(guess, secret_code)
+      hint = extract_from_array(compared_array)
+      display_board(guess, hint)
 
-      break if guess_count == 12
+      break if hint == 'BBBB' || guess_count == 13
     end
+    game_over(guess_count, secret_code)
   end
 
   def maker_mode

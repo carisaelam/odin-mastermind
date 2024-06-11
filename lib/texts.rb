@@ -36,8 +36,15 @@ module Texts
   end
 
   ## Breaker Mode Prompts
-  def breaker_guess_prompt
-    puts 'Guess the code! Type four numbers 1–6.'
+  def breaker_guess_prompt(turn_number)
+    puts "Turn #{turn_number} of 12"
+    puts 'Guess the code!'
+    puts 'Type four numbers 1–6: '
+  end
+
+  def game_over(count, code)
+    p count == 13 ? "Game Over. You did not guess it in time. The code was #{code}" : "You broke the code! It was #{code.join}"
+    puts ' '
   end
 end
 
