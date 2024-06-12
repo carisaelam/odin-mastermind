@@ -106,12 +106,3 @@ end
 class Test
   include GameLogic
 end
-
-tester = Test.new
-p tester.generate_secret_code
-
-# arr1 = [1, 2, 3, 4]
-# arr2 = [1, 6, 3, 9]
-# # zipped_array = [['B', 1], ['_', 2], ['B', 3], ['_', 4]]
-
-# tester.compare_arrays(arr1, arr2)

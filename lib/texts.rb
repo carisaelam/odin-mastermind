@@ -64,9 +64,3 @@ end
 class Game
   include Texts
 end
-
-# TESTING
-
-# tester = Game.new
-
-# puts tester.welcome
