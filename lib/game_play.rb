@@ -36,7 +36,7 @@ class GamePlay
     guess_count = 1
     correct_numbers = [1, 2, 3, 4, 5, 6]
 
-    computer_first_guess = [1, 1, 1, 1]
+    computer_first_guess = generate_secret_code
     p "computer's first guess is #{computer_first_guess}"
     compared_array = compare_arrays(computer_first_guess, secret_code)
     guess_count += 1
@@ -45,7 +45,7 @@ class GamePlay
 
     loop do
       computer_next_guess = generate_breaker_guesses(compared_array, correct_numbers)
-      puts "computer next guess is #{computer_next_guess}"
+      puts "Computer guesses: #{computer_next_guess}"
       guess_count += 1
       compared_array = compare_arrays(computer_next_guess, secret_code)
 

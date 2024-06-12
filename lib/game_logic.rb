@@ -61,20 +61,35 @@ module GameLogic
     extracted.join
   end
 
+  def computer_choose_options_blank
+    option1 = 'correct_numbers.delete(num)'
+    option2 = 'nil'
+    option_array = [option1, option2]
+    option_array.sample
+  end
+
+  def computer_choose_options_w
+    option1 = 'new_guess.push(num)'
+    option2 = 'new_guess.push(RANGE.sample)'
+    option_array = [option1, option2]
+    option_array.sample
+  end
+
   # Generate breaker guesses [Maker Mode]
   def generate_breaker_guesses(zipped_array, correct_numbers)
     new_guess = Array.new(4)
     zipped_array.each_with_index do |(feedback, num), i|
       if feedback == 'B'
         new_guess[i] = num
-      elsif feedback == 'W' && !correct_numbers.include?(num)
-        new_guess.push(num)
+      elsif feedback == 'W' && !new_guess.include?(num)
+        computer_choose_options_w
       elsif feedback == '_'
-        correct_numbers.delete(num)
+        computer_choose_options_blank
       end
     end
 
     new_guess.map! { |num| num.nil? ? correct_numbers.sample : num }
+    new_guess.take(4)
   end
 
   def user_generates_code
