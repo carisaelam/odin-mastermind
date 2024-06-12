@@ -56,7 +56,7 @@ module Texts
   end
 
   def computer_first_guess_prompt(computer_first_guess)
-    p "computer's first guess is #{computer_first_guess}"
+    p "Computer's first guess is #{computer_first_guess}"
     puts ' '
   end
 end
