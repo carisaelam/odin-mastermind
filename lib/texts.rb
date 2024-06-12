@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 module Texts
   def welcome
     puts ' '
     puts 'Welcome to Mastermind'
     puts 'Would you like to read the directions? (Y/N)'
-    choice = gets.chomp.upcase
+    gets.chomp.upcase
   end
 
   def directions
@@ -36,7 +38,6 @@ module Texts
     choice
   end
 
-  ## Breaker Mode Prompts
   def breaker_guess_prompt(turn_number)
     puts "Turn #{turn_number} of 12"
     puts 'Guess the code!'
@@ -52,6 +53,11 @@ module Texts
     puts 'Play again? (Y/N)'
     choice = gets.chomp.upcase
     choice == 'Y' ? start : (puts 'Thanks for playing Mastermind!')
+  end
+
+  def computer_first_guess_prompt(computer_first_guess)
+    p "computer's first guess is #{computer_first_guess}"
+    puts ' '
   end
 end
 

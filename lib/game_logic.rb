@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 module GameLogic
-  RANGE = [1, 2, 3, 4, 5, 6]
+  RANGE = [1, 2, 3, 4, 5, 6].freeze
 
   # Randomly generate 4-digit code between 1–6
   def generate_secret_code
@@ -35,7 +37,7 @@ module GameLogic
       if array2.include?(num)
         if array2[index] == num
           comparison.push('B')
-        else
+        elsif !comparison.include?(num)
           comparison.push('W')
         end
       else
@@ -52,6 +54,7 @@ module GameLogic
     puts ''
   end
 
+  # Pulls out [0] index from each array
   def extract_from_array(array)
     extracted = []
     array.each do |arr|
@@ -61,16 +64,8 @@ module GameLogic
     extracted.join
   end
 
-  def computer_choose_options_blank
-    option1 = 'correct_numbers.delete(num)'
-    option2 = 'nil'
-    option_array = [option1, option2]
-    option_array.sample
-  end
-
-  def computer_choose_options_w
-    option1 = 'new_guess.push(num)'
-    option2 = 'new_guess.push(RANGE.sample)'
+  # Randomly selects between two options
+  def computer_choose_options(option1, option2)
     option_array = [option1, option2]
     option_array.sample
   end
@@ -82,9 +77,9 @@ module GameLogic
       if feedback == 'B'
         new_guess[i] = num
       elsif feedback == 'W' && !new_guess.include?(num)
-        computer_choose_options_w
+        computer_choose_options('new_guess.push(num)', 'new_guess.push(correct_numbers.sample)')
       elsif feedback == '_'
-        computer_choose_options_blank
+        computer_choose_options('correct_numbers.delete(num)', 'nil')
       end
     end
 
@@ -92,6 +87,7 @@ module GameLogic
     new_guess.take(4)
   end
 
+  # Collects four digits between 1–6 from user
   def user_generates_code
     puts 'Select the code.'
     puts 'Enter four digits from 1–6.'

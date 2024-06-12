@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'texts'
 require_relative 'game_logic'
 
@@ -37,15 +39,16 @@ class GamePlay
     correct_numbers = [1, 2, 3, 4, 5, 6]
 
     computer_first_guess = generate_secret_code
-    p "computer's first guess is #{computer_first_guess}"
+    computer_first_guess_prompt(computer_first_guess)
     compared_array = compare_arrays(computer_first_guess, secret_code)
     guess_count += 1
 
-    puts 'starting the loop'
-
     loop do
+      sleep(2)
       computer_next_guess = generate_breaker_guesses(compared_array, correct_numbers)
+      puts "Turn #{guess_count}"
       puts "Computer guesses: #{computer_next_guess}"
+      puts ' '
       guess_count += 1
       compared_array = compare_arrays(computer_next_guess, secret_code)
 
